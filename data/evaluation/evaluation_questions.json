@@ -1,0 +1,72 @@
+[
+    {
+        "question": "How many days of annual leave do full-time employees receive?",
+        "expected_answer": "25 days",
+        "expected_source": "employee_handbook.pdf"
+    },
+    {
+        "question": "How many unused annual leave days can employees carry forward?",
+        "expected_answer": "5 days",
+        "expected_source": "employee_handbook.pdf"
+    },
+    {
+        "question": "How long is the probation period for new permanent employees?",
+        "expected_answer": "6 months",
+        "expected_source": "employee_handbook.pdf"
+    },
+    {
+        "question": "What is the annual professional development allowance?",
+        "expected_answer": "£750",
+        "expected_source": "employee_handbook.pdf"
+    },
+    {
+        "question": "How many days per week can eligible employees work remotely?",
+        "expected_answer": "3 days per week",
+        "expected_source": "remote_work_policy.docx"
+    },
+    {
+        "question": "What must employees use when accessing internal systems outside the office?",
+        "expected_answer": "Company VPN",
+        "expected_source": "remote_work_policy.docx"
+    },
+    {
+        "question": "When do employees become eligible for regular remote working?",
+        "expected_answer": "After successfully completing probation",
+        "expected_source": "remote_work_policy.docx"
+    },
+    {
+        "question": "Within how many days must business expenses be submitted?",
+        "expected_answer": "30 days",
+        "expected_source": "company_faq.txt"
+    },
+    {
+        "question": "How many employee parking spaces does the Manchester office have?",
+        "expected_answer": "40 parking spaces",
+        "expected_source": "company_faq.txt"
+    },
+    {
+        "question": "What referral bonus is paid after a referred candidate completes probation?",
+        "expected_answer": "£500",
+        "expected_source": "company_faq.txt"
+    },
+    {
+        "question": "Which laptop has a three-year warranty?",
+        "expected_answer": "NexaBook Pro",
+        "expected_source": "product_catalog.xlsx"
+    },
+    {
+        "question": "How much does the NexaBook Pro cost?",
+        "expected_answer": "£1299",
+        "expected_source": "product_catalog.xlsx"
+    },
+    {
+        "question": "Which product has a four-year warranty?",
+        "expected_answer": "NexaView Ultra",
+        "expected_source": "product_catalog.xlsx"
+    },
+    {
+        "question": "Which service centre offers drop-off-only support?",
+        "expected_answer": "Birmingham",
+        "expected_source": "product_catalog.xlsx"
+    }
+]

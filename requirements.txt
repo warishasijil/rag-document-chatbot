@@ -1,0 +1,17 @@
+langchain
+langchain-chroma
+chromadb
+pypdf
+python-docx
+openpyxl
+pandas
+streamlit
+python-dotenv
+langchain-text-splitters
+reportlab
+langchain-huggingface
+sentence-transformers
+langchain-groq
+matplotlib
+pytest
+pytest-cov

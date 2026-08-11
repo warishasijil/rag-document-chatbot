@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-document-chatbot"
+version = "0.1.0"
+description = "Multi-format conversational RAG chatbot using LangChain and ChromaDB"
+requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+where = ["src"]
