@@ -622,6 +622,109 @@ Therefore, the reported 100% retrieval result should be interpreted as performan
 
 ---
 
+# End-to-End RAG Evaluation
+
+In addition to evaluating vector retrieval, the complete RAG pipeline was evaluated using the same controlled set of 14 ground-truth questions.
+
+The end-to-end evaluation tested:
+
+- retrieval of relevant document context;
+- final LLM answer correctness;
+- expected-source attribution;
+- total RAG response latency.
+
+The evaluation was executed using:
+
+```bash
+python scripts/evaluate_rag.py
+```
+
+## Results
+
+| Metric | Result |
+|---|---:|
+| Answer Accuracy | **100.00%** |
+| Source Attribution Accuracy | **100.00%** |
+| Average RAG Latency | **767.88 ms** |
+| Median RAG Latency | **167.65 ms** |
+
+On the controlled 14-question synthetic evaluation set, every generated response contained the expected reference answer and every response included the expected source document.
+
+The detailed evaluation results are stored in:
+
+```text
+outputs/rag_evaluation_metrics.json
+```
+
+The answer-quality visualization is stored in:
+
+```text
+outputs/rag_answer_evaluation.png
+```
+
+## Latency Analysis
+
+The median end-to-end latency was **167.65 ms**, while the mean was considerably higher at **767.88 ms**.
+
+Most evaluated requests completed in approximately **124–191 ms**, with one request taking approximately **508 ms**. Two requests were substantial outliers at approximately **4.24 seconds** each.
+
+These outliers increased the arithmetic mean significantly, making the median a more representative measure of typical response latency for this evaluation run.
+
+Vector retrieval itself remained considerably faster, averaging approximately **20.11 ms**. The end-to-end latency additionally includes prompt construction and communication with the externally hosted LLM.
+
+Because the LLM is accessed through an external API, response latency may vary because of network conditions and provider-side inference time.
+
+## Evaluation Methodology
+
+Reference answers and expected source documents were defined in:
+
+```text
+data/evaluation/evaluation_questions.json
+```
+
+Generated answers were normalized before comparison so that formatting differences did not incorrectly count as failures.
+
+For example:
+
+```text
+Expected:
+£1299
+
+Generated:
+The NexaBook Pro costs £1,299.
+```
+
+is treated as a correct answer.
+
+The evaluator also verifies that the expected source document occurs in the sources returned by the RAG pipeline.
+
+## Evaluation Limitations
+
+The reported results should be interpreted within the scope of the evaluation dataset.
+
+The evaluation currently uses:
+
+- 14 synthetic questions;
+- a controlled synthetic enterprise knowledge base;
+- deterministic reference-answer matching;
+- expected-source attribution;
+- a single primary embedding configuration;
+- a single LLM configuration.
+
+Therefore, the reported **100% answer accuracy does not imply universal chatbot accuracy**.
+
+Future evaluation could include:
+
+- a substantially larger test dataset;
+- paraphrased and adversarial questions;
+- unanswerable questions;
+- chunk-level ground truth;
+- semantic answer evaluation;
+- LLM-as-a-judge evaluation;
+- hallucination-rate measurement;
+- repeated latency benchmarking;
+- evaluation across multiple embedding and LLM models.
+
 # Automated Testing
 
 The project contains automated unit tests covering:
