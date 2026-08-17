@@ -1,68 +1,69 @@
 # Multi-Format Conversational RAG Chatbot
 
-A professional Retrieval-Augmented Generation (RAG) chatbot built using **LangChain, ChromaDB, Hugging Face embeddings, Groq LLMs, and Streamlit**.
+A modular Retrieval-Augmented Generation (RAG) chatbot built with **LangChain, ChromaDB, Hugging Face embeddings, Groq, and Streamlit**.
 
-The application ingests documents in multiple formats, converts them into embeddings, stores them in a persistent ChromaDB vector database, retrieves semantically relevant document chunks, and uses an LLM to generate grounded conversational answers.
+The application can ingest multiple document formats, create vector embeddings, store them in a persistent ChromaDB database, retrieve semantically relevant information, and generate grounded conversational answers using an LLM.
 
-The system also maintains visible chat history, supports follow-up questions, displays retrieved sources, and includes automated retrieval evaluation and unit testing.
+The chatbot also supports follow-up questions, visible chat history, source attribution, automated retrieval evaluation, end-to-end RAG evaluation, unit testing, and continuous integration.
 
 ---
 
 ## Features
 
-- Retrieval-Augmented Generation (RAG)
-- Large Language Model integration
-- LangChain-based orchestration
-- ChromaDB vector database
-- Local Hugging Face embeddings
-- Multi-format document ingestion
-  - PDF
-  - DOCX
-  - TXT
-  - XLSX
-- Configurable document chunking
-- Persistent vector indexing
-- Semantic similarity search
-- Conversational question answering
-- Follow-up question contextualization
-- Visible chat history
-- Source attribution
-- Streamlit user interface
-- Retrieval evaluation metrics
-- Output visualization
-- Automated unit tests
-- GitHub Actions CI pipeline
-- Object-Oriented Programming architecture
+* Retrieval-Augmented Generation (RAG)
+* Multi-format document ingestion
+
+  * PDF
+  * DOCX
+  * TXT
+  * XLSX
+* LangChain-based orchestration
+* Hugging Face sentence-transformer embeddings
+* Persistent ChromaDB vector store
+* Semantic similarity search
+* Conversational question answering
+* Follow-up question contextualization
+* Visible chat history
+* Source attribution
+* Hallucination-aware prompting
+* Streamlit web interface
+* Retrieval evaluation
+* End-to-end answer evaluation
+* Performance visualization
+* Automated unit tests
+* GitHub Actions CI
+* Modular Object-Oriented architecture
 
 ---
 
-## System Architecture
+# System Architecture
 
 ```mermaid
 flowchart TD
-
     A[PDF / DOCX / TXT / XLSX] --> B[Document Ingestion]
     B --> C[LangChain Documents]
     C --> D[Text Chunking]
     D --> E[Hugging Face Embeddings]
     E --> F[ChromaDB Vector Store]
 
-    G[User Question] --> H[Conversation Context]
-    H --> I[Standalone Retrieval Query]
-    I --> F
+    G[User Question] --> H[Conversation History]
+    H --> I[Query Contextualization]
+    I --> J[Standalone Retrieval Query]
+    J --> F
 
-    F --> J[Relevant Document Chunks]
-    J --> K[RAG Prompt]
+    F --> K[Relevant Document Chunks]
+    K --> L[RAG Prompt]
+    H --> L
 
-    H --> K
-    K --> L[Groq LLM]
-    L --> M[Grounded Answer + Sources]
-    M --> N[Streamlit Chat Interface]
+    L --> M[Groq LLM]
+    M --> N[Grounded Answer]
+    N --> O[Answer + Sources]
+    O --> P[Streamlit Interface]
 ```
 
-The application consists of two main pipelines:
+The project contains two main pipelines.
 
-### Indexing Pipeline
+## Indexing Pipeline
 
 ```text
 Documents
@@ -71,23 +72,25 @@ Document Loaders
     ↓
 LangChain Documents
     ↓
-Text Splitting
+Text Chunking
     ↓
 Embeddings
     ↓
 ChromaDB
 ```
 
-### Query Pipeline
+## Query Pipeline
 
 ```text
 User Question
     ↓
 Conversation Contextualization
     ↓
+Standalone Retrieval Query
+    ↓
 Semantic Retrieval
     ↓
-Relevant Document Chunks
+Relevant Context
     ↓
 RAG Prompt
     ↓
@@ -98,46 +101,48 @@ Answer + Sources
 
 ---
 
-## Technologies Used
+# Technologies Used
 
-| Technology | Purpose |
-|---|---|
-| Python | Core application language |
-| LangChain | RAG orchestration and abstractions |
-| ChromaDB | Persistent vector database |
-| Hugging Face Sentence Transformers | Document and query embeddings |
-| all-MiniLM-L6-v2 | Embedding model |
-| Groq | LLM inference |
-| Llama 3.1 8B Instant | Language model |
-| Streamlit | Conversational web interface |
-| PyPDF | PDF text extraction |
-| python-docx | DOCX processing |
-| pandas | Structured data processing |
-| openpyxl | Excel processing |
-| pytest | Automated testing |
-| pytest-cov | Test coverage |
-| Matplotlib | Evaluation visualizations |
-| GitHub Actions | Continuous Integration |
+| Technology                               | Purpose                                     |
+| ---------------------------------------- | ------------------------------------------- |
+| Python 3.12                              | Core programming language                   |
+| LangChain                                | RAG orchestration and document abstractions |
+| ChromaDB                                 | Persistent vector database                  |
+| Hugging Face                             | Embedding model integration                 |
+| `sentence-transformers/all-MiniLM-L6-v2` | Text embeddings                             |
+| Groq                                     | Hosted LLM inference                        |
+| `openai/gpt-oss-20b`                     | Language generation                         |
+| Streamlit                                | Conversational user interface               |
+| PyPDF                                    | PDF text extraction                         |
+| python-docx                              | DOCX processing                             |
+| pandas                                   | Structured data processing                  |
+| openpyxl                                 | Excel processing                            |
+| Matplotlib                               | Evaluation visualizations                   |
+| pytest                                   | Automated testing                           |
+| pytest-cov                               | Test coverage                               |
+| GitHub Actions                           | Continuous Integration                      |
 
 ---
 
 # Dataset
 
-The project uses a purpose-built **synthetic enterprise knowledge base** representing a fictional company named **NexaTech**.
+The project uses a purpose-built **synthetic enterprise knowledge base** for a fictional company named **NexaTech**.
 
-A synthetic dataset was selected because it:
+A synthetic dataset was used because it provides:
 
-- provides controlled ground truth for evaluation;
-- supports all document formats required by the project;
-- contains no confidential or proprietary information;
-- allows retrieval performance to be measured objectively;
-- makes the project completely reproducible.
+* controlled ground truth for evaluation;
+* coverage of all required document formats;
+* reproducible experiments;
+* no confidential or proprietary information;
+* clearly defined expected answers and source documents.
 
-The dataset can be generated using:
+The dataset can be regenerated using:
 
 ```bash
 python scripts/generate_dataset.py
 ```
+
+---
 
 ## Dataset Files
 
@@ -145,53 +150,65 @@ python scripts/generate_dataset.py
 
 Contains information about:
 
-- annual leave;
-- leave carry-forward;
-- probation period;
-- sickness reporting;
-- professional development allowance.
+* annual leave entitlement;
+* leave carry-forward;
+* probation period;
+* sickness reporting;
+* professional development allowance.
 
 ### `remote_work_policy.docx`
 
 Contains information about:
 
-- remote-working allowance;
-- remote-working eligibility;
-- company equipment;
-- VPN requirements;
-- international remote working.
+* remote-working allowance;
+* remote-working eligibility;
+* VPN requirements;
+* company equipment;
+* international remote working.
 
 ### `company_faq.txt`
 
 Contains information about:
 
-- office hours;
-- IT support;
-- expense claims;
-- building access;
-- parking;
-- employee referral programme.
+* office hours;
+* IT support;
+* business expenses;
+* office access;
+* parking;
+* employee referral bonus.
 
 ### `product_catalog.xlsx`
 
 Contains structured information about:
 
-- laptops;
-- desktop computers;
-- monitors;
-- accessories;
-- prices;
-- warranties;
-- stock;
-- service centres.
+* laptops;
+* desktop computers;
+* monitors;
+* accessories;
+* product prices;
+* warranties;
+* stock;
+* service centres.
 
-An additional ground-truth evaluation dataset is stored in:
+---
+
+## Evaluation Dataset
+
+Ground-truth evaluation questions are stored in:
 
 ```text
 data/evaluation/evaluation_questions.json
 ```
 
-It contains predefined questions together with their expected answers and expected source documents.
+Each item contains:
+
+```text
+Question
+Expected answer
+Expected source document
+```
+
+The current evaluation dataset contains **14 questions** covering all four document formats.
 
 ---
 
@@ -215,13 +232,16 @@ rag-document-chatbot/
 │       └── evaluation_questions.json
 │
 ├── outputs/
+│   ├── experiments/
+│   ├── rag_answer_evaluation.png
+│   ├── rag_evaluation_metrics.json
 │   ├── retrieval_metrics.json
-│   ├── retrieval_performance.png
-│   └── experiments/
+│   └── retrieval_performance.png
 │
 ├── scripts/
 │   ├── build_index.py
 │   ├── check_project.py
+│   ├── evaluate_rag.py
 │   ├── evaluate_retrieval.py
 │   ├── generate_dataset.py
 │   ├── test_ingestion.py
@@ -282,9 +302,9 @@ rag-document-chatbot/
 
 # Object-Oriented Design
 
-The project follows a modular OOP architecture.
+The project follows a modular Object-Oriented structure.
 
-Document ingestion is implemented using specialized loader classes:
+Document ingestion is built around a common loader interface:
 
 ```text
 BaseDocumentLoader
@@ -295,9 +315,9 @@ BaseDocumentLoader
         └── ExcelDocumentLoader
 ```
 
-`DocumentLoaderFactory` selects the appropriate loader depending on the file extension.
+`DocumentLoaderFactory` selects the correct loader depending on the file extension.
 
-Higher-level services separate responsibilities:
+The main responsibilities are separated into dedicated services:
 
 ```text
 DocumentIngestionService
@@ -309,7 +329,7 @@ LLMService
 ChatService
 ```
 
-This separation improves maintainability, testability, and extensibility.
+This keeps document loading, embedding, retrieval, language-model interaction, and conversational logic separate and easier to maintain and test.
 
 ---
 
@@ -321,7 +341,7 @@ This separation improves maintainability, testability, and extensibility.
 git clone https://github.com/warishasijil/rag-document-chatbot.git
 ```
 
-Move into the project:
+Move into the project directory:
 
 ```bash
 cd rag-document-chatbot
@@ -333,9 +353,9 @@ cd rag-document-chatbot
 
 Python **3.12** is recommended.
 
-Create the virtual environment:
+## Windows
 
-### Windows
+Create a virtual environment:
 
 ```powershell
 py -3.12 -m venv .venv
@@ -347,7 +367,15 @@ Activate it:
 .\.venv\Scripts\Activate.ps1
 ```
 
-### macOS/Linux
+If PowerShell prevents activation for the current session:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+```
+
+Then activate the environment again.
+
+## macOS / Linux
 
 ```bash
 python3.12 -m venv .venv
@@ -369,7 +397,7 @@ Upgrade pip:
 python -m pip install --upgrade pip
 ```
 
-Install dependencies:
+Install the required packages:
 
 ```bash
 pip install -r requirements.txt
@@ -385,81 +413,205 @@ pip install -e .
 
 # Environment Variables
 
-Create a `.env` file from the provided example.
+Create a `.env` file from the included example.
 
-### Windows
+## Windows
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-### macOS/Linux
+## macOS / Linux
 
 ```bash
 cp .env.example .env
 ```
 
-Add your Groq API key:
+Add a Groq API key:
 
 ```text
 GROQ_API_KEY=your_groq_api_key_here
 ```
 
-The `.env` file is excluded from Git and must never be committed.
+The `.env` file is excluded from version control.
 
 ---
 
 # Generate the Dataset
 
-The included synthetic knowledge base can be regenerated using:
+The included synthetic NexaTech dataset can be regenerated using:
 
 ```bash
 python scripts/generate_dataset.py
 ```
 
-This creates the PDF, DOCX, TXT, Excel, and evaluation files used by the application.
+This generates the PDF, DOCX, TXT, XLSX, and evaluation data used by the project.
 
 ---
 
-# Build the Vector Database
+# Document Ingestion
 
-Before running the chatbot, build the ChromaDB index:
+Each supported format has its own loader.
 
-```bash
-python scripts/build_index.py
-```
+The ingestion service converts the source files into LangChain `Document` objects while preserving useful metadata.
 
-This performs:
+Example metadata includes:
 
 ```text
-Document ingestion
-      ↓
-Text chunking
-      ↓
-Embedding generation
-      ↓
-ChromaDB indexing
+file_name
+file_type
+page
+sheet
+row
+source
 ```
 
-The local database is stored in:
+Excel rows are stored as individual documents.
+
+For example:
+
+```text
+Product: NexaBook Pro
+Category: Laptop
+Price_GBP: 1299
+Warranty_Years: 3
+Stock: 22
+```
+
+This allows individual spreadsheet records to be retrieved semantically.
+
+---
+
+# Text Chunking
+
+Documents are split using LangChain's `RecursiveCharacterTextSplitter`.
+
+The final configuration is:
+
+```text
+Chunk size:    300
+Chunk overlap: 50
+```
+
+The splitter also records the starting character position of each chunk in its metadata.
+
+---
+
+# Embeddings
+
+The system uses:
+
+```text
+sentence-transformers/all-MiniLM-L6-v2
+```
+
+through Hugging Face.
+
+Embeddings are normalized before being stored and queried.
+
+---
+
+# Vector Database
+
+ChromaDB is used as the persistent vector store.
+
+The database is stored locally in:
 
 ```text
 chroma_db/
 ```
 
-The database directory is excluded from Git because it can be regenerated from the source documents.
+The directory is intentionally excluded from Git because the index can be reproduced from the source documents.
+
+---
+
+# Build the Vector Index
+
+Before running the chatbot, create the ChromaDB index:
+
+```bash
+python scripts/build_index.py
+```
+
+The script:
+
+```text
+Loads documents
+      ↓
+Splits documents into chunks
+      ↓
+Creates embeddings
+      ↓
+Builds the ChromaDB index
+```
+
+The existing index is removed before rebuilding to prevent duplicate records.
+
+---
+
+# Conversational Retrieval
+
+The chatbot supports follow-up questions.
+
+For example:
+
+```text
+User:
+Which laptop has a three-year warranty?
+
+Assistant:
+The NexaBook Pro.
+```
+
+The next question may be:
+
+```text
+User:
+How much does it cost?
+```
+
+Before retrieval, the contextualization model converts this into a standalone query such as:
+
+```text
+How much does the NexaBook Pro cost?
+```
+
+This allows the retriever to correctly understand conversational references.
+
+The contextualization prompt is instructed not to invent extra dates, locations, policies, or other facts that were not present in the conversation.
+
+---
+
+# Prompt Engineering
+
+The final RAG prompt instructs the model to:
+
+* answer using retrieved context;
+* avoid inventing company facts;
+* avoid inventing prices, policies, people, dates, or sources;
+* use conversation history only to resolve conversational context;
+* associate factual answers with retrieved sources;
+* explicitly state when the indexed documents do not contain the requested information.
+
+For unsupported questions, the expected response is:
+
+```text
+I couldn't find that information in the indexed documents.
+```
+
+This behaviour reduces unsupported generation and makes failures visible to the user.
 
 ---
 
 # Run the Application
 
-Start the Streamlit application:
+Start the Streamlit interface using:
 
 ```bash
 python -m streamlit run app.py
 ```
 
-The application will provide a local URL, normally:
+Streamlit will provide a local application URL, typically:
 
 ```text
 http://localhost:8501
@@ -467,9 +619,22 @@ http://localhost:8501
 
 ---
 
-# Example Questions
+# Streamlit Interface
 
-Examples include:
+The user interface provides:
+
+* conversational chat;
+* visible conversation history;
+* retrieved source information;
+* retrieval-query inspection;
+* configuration details;
+* a clear-conversation control.
+
+When the RAG system explicitly reports that the answer was not found, unrelated retrieved chunks are not shown as supporting sources.
+
+---
+
+# Example Questions
 
 ```text
 How many days of annual leave do full-time employees receive?
@@ -483,84 +648,53 @@ How many can they carry forward?
 Which laptop has a three-year warranty?
 ```
 
-Followed conversationally by:
-
 ```text
 How much does it cost?
 ```
 
-The system rewrites ambiguous follow-up questions into standalone retrieval queries.
-
-For example:
-
 ```text
-How much does it cost?
+Which service centre offers drop-off-only support?
 ```
 
-may become:
+An example unanswerable question is:
 
 ```text
-laptop price NexaBook Pro
+Who is the CEO of NexaTech?
 ```
 
-before being sent to ChromaDB.
-
----
-
-# Prompt Engineering
-
-The RAG prompt instructs the LLM to:
-
-- answer only from retrieved document context;
-- avoid using external knowledge for NexaTech facts;
-- avoid inventing policies, prices, people, or sources;
-- admit when sufficient information is unavailable;
-- use conversation history only for understanding references;
-- associate answers with retrieved source labels.
-
-A separate contextualization prompt converts conversational follow-up questions into standalone retrieval queries.
-
----
-
-# Chunking Optimization
-
-Initial retrieval used:
-
-```text
-Chunk size:    800
-Chunk overlap: 150
-```
-
-Evaluation revealed that the large chunks caused unrelated FAQ topics to share a single embedding.
-
-Two queries retrieved the correct document at rank 2 rather than rank 1.
-
-The configuration was therefore changed to:
-
-```text
-Chunk size:    300
-Chunk overlap: 50
-```
-
-This improved retrieval specificity.
+Because the CEO is not included in the indexed documents, the chatbot should decline to invent an answer.
 
 ---
 
 # Retrieval Evaluation
 
-Retrieval was evaluated using **14 ground-truth questions**.
+Retrieval performance is evaluated using:
 
-The following metrics were calculated:
+```bash
+python scripts/evaluate_retrieval.py
+```
 
-- Hit Rate@1
-- Hit Rate@3
-- Hit Rate@5
-- Mean Reciprocal Rank (MRR)
-- Average retrieval latency
+The evaluator uses the 14 ground-truth questions stored in:
 
-## Baseline Results
+```text
+data/evaluation/evaluation_questions.json
+```
 
-Configuration:
+For each question, the expected document is compared against the ranked documents returned by ChromaDB.
+
+The following metrics are calculated:
+
+* Hit Rate@1
+* Hit Rate@3
+* Hit Rate@5
+* Mean Reciprocal Rank
+* retrieval latency
+
+---
+
+## Baseline Retrieval Configuration
+
+The initial configuration used:
 
 ```text
 chunk_size = 800
@@ -569,88 +703,99 @@ chunk_overlap = 150
 
 Results:
 
-| Metric | Result |
-|---|---:|
-| Hit Rate@1 | 85.71% |
-| Hit Rate@3 | 100.00% |
-| Hit Rate@5 | 100.00% |
-| MRR | 0.9286 |
-| Average retrieval latency | 31.68 ms |
+| Metric                    |   Result |
+| ------------------------- | -------: |
+| Hit Rate@1                |   85.71% |
+| Hit Rate@3                |  100.00% |
+| Hit Rate@5                |  100.00% |
+| MRR                       |   0.9286 |
+| Average Retrieval Latency | 31.68 ms |
 
-Error analysis identified two source-ranking failures involving the multi-topic company FAQ.
+Error analysis showed that two FAQ questions retrieved the correct source at rank 2 rather than rank 1.
+
+The larger chunks caused several unrelated FAQ topics to share a single embedding representation.
 
 ---
 
-## Optimized Results
+## Optimized Retrieval Configuration
 
-Configuration:
+The chunking configuration was changed to:
 
 ```text
 chunk_size = 300
 chunk_overlap = 50
 ```
 
-Results:
+The optimized evaluation achieved:
 
-| Metric | Result |
-|---|---:|
+| Metric     |      Result |
+| ---------- | ----------: |
 | Hit Rate@1 | **100.00%** |
 | Hit Rate@3 | **100.00%** |
 | Hit Rate@5 | **100.00%** |
-| MRR | **1.0000** |
-| Average retrieval latency | **20.11 ms** |
+| MRR        |  **1.0000** |
 
-The optimized configuration is used by the final system.
+The optimized run demonstrated that all 14 expected source documents were ranked first for their corresponding evaluation questions.
 
-The retrieval performance visualization is stored at:
-
-```text
-outputs/retrieval_performance.png
-```
-
-The detailed metrics are stored at:
+Retrieval latency is stored with each evaluation run in:
 
 ```text
 outputs/retrieval_metrics.json
 ```
 
-### Evaluation Limitation
+The performance visualization is stored in:
 
-The evaluation dataset contains 14 synthetic ground-truth questions and primarily evaluates retrieval at the expected-source level.
+```text
+outputs/retrieval_performance.png
+```
 
-Therefore, the reported 100% retrieval result should be interpreted as performance on this controlled test set rather than evidence of universal RAG accuracy.
+Because latency can vary between runs, the JSON output should be treated as the authoritative value for the most recent benchmark.
 
 ---
 
 # End-to-End RAG Evaluation
 
-In addition to evaluating vector retrieval, the complete RAG pipeline was evaluated using the same controlled set of 14 ground-truth questions.
+Retrieval quality alone does not confirm that the final generated answer is correct.
 
-The end-to-end evaluation tested:
-
-- retrieval of relevant document context;
-- final LLM answer correctness;
-- expected-source attribution;
-- total RAG response latency.
-
-The evaluation was executed using:
+The complete question-answering pipeline is therefore evaluated separately using:
 
 ```bash
 python scripts/evaluate_rag.py
 ```
 
-## Results
+The evaluation measures:
 
-| Metric | Result |
-|---|---:|
-| Answer Accuracy | **100.00%** |
-| Source Attribution Accuracy | **100.00%** |
-| Average RAG Latency | **767.88 ms** |
-| Median RAG Latency | **167.65 ms** |
+* generated answer correctness;
+* expected-source attribution;
+* complete RAG response latency.
 
-On the controlled 14-question synthetic evaluation set, every generated response contained the expected reference answer and every response included the expected source document.
+---
 
-The detailed evaluation results are stored in:
+## Final End-to-End Results
+
+The final system uses:
+
+```text
+LLM: openai/gpt-oss-20b
+Embedding model: sentence-transformers/all-MiniLM-L6-v2
+Chunk size: 300
+Chunk overlap: 50
+Retrieval K: 4
+```
+
+Results on the controlled 14-question evaluation set:
+
+| Metric                      |        Result |
+| --------------------------- | ------------: |
+| Questions Evaluated         |        **14** |
+| Answer Accuracy             |   **100.00%** |
+| Source Attribution Accuracy |   **100.00%** |
+| Average RAG Latency         | **981.61 ms** |
+| Median RAG Latency          | **760.36 ms** |
+
+All 14 generated responses contained the expected reference answer, and all 14 responses returned the expected source document.
+
+Detailed results are stored in:
 
 ```text
 outputs/rag_evaluation_metrics.json
@@ -662,90 +807,132 @@ The answer-quality visualization is stored in:
 outputs/rag_answer_evaluation.png
 ```
 
-## Latency Analysis
+---
 
-The median end-to-end latency was **167.65 ms**, while the mean was considerably higher at **767.88 ms**.
+# Latency Analysis
 
-Most evaluated requests completed in approximately **124–191 ms**, with one request taking approximately **508 ms**. Two requests were substantial outliers at approximately **4.24 seconds** each.
-
-These outliers increased the arithmetic mean significantly, making the median a more representative measure of typical response latency for this evaluation run.
-
-Vector retrieval itself remained considerably faster, averaging approximately **20.11 ms**. The end-to-end latency additionally includes prompt construction and communication with the externally hosted LLM.
-
-Because the LLM is accessed through an external API, response latency may vary because of network conditions and provider-side inference time.
-
-## Evaluation Methodology
-
-Reference answers and expected source documents were defined in:
+The complete RAG pipeline achieved:
 
 ```text
-data/evaluation/evaluation_questions.json
+Average latency: 981.61 ms
+Median latency:  760.36 ms
 ```
 
-Generated answers were normalized before comparison so that formatting differences did not incorrectly count as failures.
+These measurements include:
+
+```text
+Query processing
+      +
+Vector retrieval
+      +
+Prompt construction
+      +
+External LLM inference
+      +
+Response generation
+```
+
+This should be distinguished from retrieval-only latency, which does not include LLM inference.
+
+Because the language model is accessed through the externally hosted Groq API, end-to-end latency can vary between evaluation runs depending on factors such as network conditions and provider-side inference time.
+
+---
+
+# Answer Evaluation Methodology
+
+Generated answers are compared against reference answers defined in the evaluation dataset.
+
+Text is normalized before comparison so that formatting differences do not incorrectly count as failures.
 
 For example:
 
 ```text
 Expected:
 £1299
+```
 
+and:
+
+```text
 Generated:
 The NexaBook Pro costs £1,299.
 ```
 
+are treated as equivalent.
+
+For longer answers, reference-token coverage is calculated.
+
+A reference coverage score of at least:
+
+```text
+0.80
+```
+
 is treated as a correct answer.
 
-The evaluator also verifies that the expected source document occurs in the sources returned by the RAG pipeline.
+The evaluator separately checks whether the expected source document is included in the retrieved source list.
 
-## Evaluation Limitations
+---
 
-The reported results should be interpreted within the scope of the evaluation dataset.
+# Evaluation Limitations
 
-The evaluation currently uses:
+The evaluation results should be interpreted within the scope of the test environment.
 
-- 14 synthetic questions;
-- a controlled synthetic enterprise knowledge base;
-- deterministic reference-answer matching;
-- expected-source attribution;
-- a single primary embedding configuration;
-- a single LLM configuration.
+The current benchmark contains:
 
-Therefore, the reported **100% answer accuracy does not imply universal chatbot accuracy**.
+* 14 questions;
+* a synthetic enterprise knowledge base;
+* controlled reference answers;
+* expected-source matching;
+* deterministic answer normalization;
+* one embedding model;
+* one final LLM configuration.
 
-Future evaluation could include:
+Therefore:
 
-- a substantially larger test dataset;
-- paraphrased and adversarial questions;
-- unanswerable questions;
-- chunk-level ground truth;
-- semantic answer evaluation;
-- LLM-as-a-judge evaluation;
-- hallucination-rate measurement;
-- repeated latency benchmarking;
-- evaluation across multiple embedding and LLM models.
+> **100% accuracy on this evaluation set does not mean the chatbot is universally 100% accurate.**
+
+The result means that the final system answered all questions correctly within this specific controlled benchmark.
+
+Potential future evaluation improvements include:
+
+* larger evaluation datasets;
+* human-written test questions;
+* paraphrased queries;
+* ambiguous queries;
+* adversarial questions;
+* larger sets of unanswerable questions;
+* chunk-level relevance labels;
+* semantic answer evaluation;
+* hallucination-rate measurement;
+* LLM-as-a-judge evaluation;
+* repeated latency benchmarking;
+* comparison between different embedding models;
+* comparison between different LLMs.
+
+---
 
 # Automated Testing
 
 The project contains automated unit tests covering:
 
-- TXT ingestion;
-- PDF ingestion;
-- DOCX ingestion;
-- Excel ingestion;
-- metadata preservation;
-- loader factory selection;
-- unsupported file handling;
-- ingestion service behaviour;
-- empty directories;
-- missing directories;
-- document chunking;
-- metadata preservation during chunking.
+* TXT loading;
+* PDF loading;
+* DOCX loading;
+* Excel loading;
+* document metadata;
+* loader factory selection;
+* unsupported formats;
+* ingestion service behaviour;
+* missing directories;
+* empty directories;
+* text splitting;
+* metadata preservation after chunking.
 
-Run:
+Run the test suite using:
 
 ```bash
-python -m pytest -v
+python -m pytest
 ```
 
 Current result:
@@ -754,7 +941,7 @@ Current result:
 16 passed
 ```
 
-Test coverage can be inspected using:
+For coverage:
 
 ```bash
 python -m pytest --cov=rag_chatbot --cov-report=term-missing
@@ -762,20 +949,60 @@ python -m pytest --cov=rag_chatbot --cov-report=term-missing
 
 ---
 
+# End-to-End Testing
+
+A separate script tests the live RAG pipeline:
+
+```bash
+python scripts/test_rag.py
+```
+
+It covers:
+
+```text
+Standard document question
+        ↓
+Conversational follow-up
+        ↓
+Excel retrieval
+        ↓
+Excel follow-up
+        ↓
+Unanswerable question
+```
+
+Example tested conversation:
+
+```text
+Which laptop has a three-year warranty?
+```
+
+followed by:
+
+```text
+How much does it cost?
+```
+
+The contextualization layer correctly resolves the second question to the NexaBook Pro.
+
+The script also verifies that unsupported information such as the fictional company's CEO is not invented.
+
+---
+
 # Continuous Integration
 
-A GitHub Actions workflow is configured at:
+The project includes a GitHub Actions workflow:
 
 ```text
 .github/workflows/ci.yml
 ```
 
-The CI pipeline automatically runs on:
+The workflow runs automatically on:
 
-- pushes to `main`;
-- pull requests targeting `main`.
+* pushes to `main`;
+* pull requests targeting `main`.
 
-The workflow:
+The CI pipeline performs:
 
 ```text
 Checkout repository
@@ -786,41 +1013,48 @@ Install dependencies
       ↓
 Install project
       ↓
-Run pytest
-      ↓
-Run coverage
+Run tests with coverage
 ```
 
-This provides automated validation of the codebase before changes are integrated.
+The workflow ensures that changes are automatically tested before integration.
 
 ---
 
 # Trained Models
 
-No model is trained from scratch in this project.
+No machine-learning model is trained from scratch in this project.
 
-The system uses pretrained models:
+The RAG system uses pretrained models:
 
-- `sentence-transformers/all-MiniLM-L6-v2` for embeddings;
-- `llama-3.1-8b-instant` through Groq for language generation.
+```text
+sentence-transformers/all-MiniLM-L6-v2
+```
 
-The project focuses on **Retrieval-Augmented Generation**, where pretrained models are augmented with application-specific knowledge retrieved from ChromaDB.
+for embeddings, and:
 
-Therefore, a separately trained model artifact is **not applicable** to this project.
+```text
+openai/gpt-oss-20b
+```
+
+through Groq for language generation.
+
+The project focuses on augmenting a pretrained language model with knowledge retrieved from a vector database rather than training a new model.
+
+Therefore, a custom trained-model artifact is not applicable.
 
 ---
 
 # Security
 
-Sensitive credentials are stored in:
+Sensitive credentials are stored locally in:
 
 ```text
 .env
 ```
 
-and excluded from Git using `.gitignore`.
+The file is excluded using `.gitignore`.
 
-The repository only contains:
+The repository contains only:
 
 ```text
 .env.example
@@ -828,43 +1062,92 @@ The repository only contains:
 
 which documents the required environment-variable names without exposing credentials.
 
+The following are also excluded from version control:
+
+```text
+.venv/
+chroma_db/
+__pycache__/
+.pytest_cache/
+.coverage
+```
+
+---
+
+# Output Files
+
+The project includes reproducible evaluation results and visualizations.
+
+```text
+outputs/
+├── rag_answer_evaluation.png
+├── rag_evaluation_metrics.json
+├── retrieval_metrics.json
+└── retrieval_performance.png
+```
+
+These files provide evidence of both retrieval performance and final RAG answer performance.
+
+---
+
+# Reproducing the Project
+
+A complete run can be reproduced using:
+
+```bash
+python scripts/generate_dataset.py
+python scripts/build_index.py
+python scripts/evaluate_retrieval.py
+python scripts/evaluate_rag.py
+python -m pytest
+python -m streamlit run app.py
+```
+
 ---
 
 # Future Improvements
 
-Possible improvements include:
+Potential improvements include:
 
-- larger and more diverse evaluation datasets;
-- chunk-level ground-truth evaluation;
-- LLM answer-quality evaluation;
-- retrieval similarity thresholds;
-- reranking;
-- hybrid semantic and keyword retrieval;
-- document upload directly from the Streamlit interface;
-- persistent user conversations;
-- containerization with Docker;
-- deployment to a cloud platform.
+* document uploads directly from the interface;
+* drag-and-drop ingestion;
+* automatic index rebuilding;
+* similarity-score thresholds;
+* metadata filtering;
+* hybrid keyword and semantic retrieval;
+* reranking;
+* persistent user conversations;
+* larger real-world datasets;
+* authentication;
+* Docker containerization;
+* cloud deployment;
+* model comparison experiments;
+* expanded automated integration tests.
 
 ---
 
 # Conclusion
 
-This project demonstrates an end-to-end implementation of a professional multi-format conversational RAG system.
+This project demonstrates the development of an end-to-end **multi-format conversational Retrieval-Augmented Generation system**.
 
-It integrates:
+The final application integrates:
 
-- document ingestion;
-- text preprocessing;
-- embeddings;
-- vector indexing;
-- semantic retrieval;
-- prompt engineering;
-- conversational context;
-- LLM generation;
-- source attribution;
-- automated evaluation;
-- software testing;
-- continuous integration;
-- and a user-facing chat interface.
+* PDF, DOCX, TXT, and XLSX ingestion;
+* document preprocessing;
+* text chunking;
+* Hugging Face embeddings;
+* ChromaDB vector indexing;
+* semantic retrieval;
+* conversational query contextualization;
+* prompt engineering;
+* Groq-based LLM inference;
+* grounded answer generation;
+* source attribution;
+* visible chat history;
+* retrieval evaluation;
+* end-to-end answer evaluation;
+* performance visualization;
+* automated testing;
+* and continuous integration.
 
-The final system provides a modular and extensible foundation for document-based AI assistants.
+The project provides a reproducible and extensible foundation for document-based AI assistants.

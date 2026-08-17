@@ -8,7 +8,7 @@ from rag_chatbot.ingestion.text_loader import TextDocumentLoader
 
 
 class DocumentLoaderFactory:
-    """Factory for selecting the correct document loader."""
+    """Choose the correct loader for a file type."""
 
     _LOADERS = {
         ".txt": TextDocumentLoader,
@@ -18,17 +18,11 @@ class DocumentLoaderFactory:
     }
 
     @classmethod
-    def create_loader(
-        cls,
-        file_path: Path,
-    ) -> BaseDocumentLoader:
+    def create_loader(cls, file_path: Path) -> BaseDocumentLoader:
         extension = file_path.suffix.lower()
-
         loader_class = cls._LOADERS.get(extension)
 
         if loader_class is None:
-            raise ValueError(
-                f"Unsupported file type: {extension}"
-            )
+            raise ValueError(f"Unsupported file type: {extension}")
 
         return loader_class()

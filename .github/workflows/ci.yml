@@ -30,8 +30,5 @@ jobs:
           pip install -r requirements.txt
           pip install -e .
 
-      - name: Run unit tests
-        run: python -m pytest -v
-
-      - name: Run test coverage
-        run: python -m pytest --cov=rag_chatbot --cov-report=term-missing
+      - name: Run tests with coverage
+        run: python -m pytest -v --cov=rag_chatbot --cov-report=term-missing

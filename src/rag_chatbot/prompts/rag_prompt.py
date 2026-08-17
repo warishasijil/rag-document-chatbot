@@ -9,23 +9,20 @@ from langchain_core.prompts import (
 # ============================================================
 
 CONTEXTUALIZE_SYSTEM_PROMPT = """
-You rewrite conversational follow-up questions into standalone
-search queries for document retrieval.
+Rewrite the user's latest question as a short, standalone search query
+when conversation history is needed to understand it.
 
-Use the conversation history only to understand references in
-the latest question, such as:
+Use the chat history only to resolve references such as "it", "they",
+"that product", or other missing context.
 
-- "it"
-- "they"
-- "that policy"
-- "that product"
-- "how much does it cost?"
-- "when does it apply?"
+Do not answer the question.
+Do not add facts, dates, locations, policy names, or assumptions that are
+not explicitly present in the question or chat history.
+Do not repeat the query.
+Return only one plain-text search query.
 
-Do not answer the user's question.
-
-Return only a concise standalone search query that can be sent
-to a vector database.
+If the latest question is already understandable on its own, return it
+unchanged.
 """.strip()
 
 

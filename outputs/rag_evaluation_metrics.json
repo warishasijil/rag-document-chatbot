@@ -2,13 +2,13 @@
     "total_questions": 14,
     "answer_accuracy": 1.0,
     "source_attribution_accuracy": 1.0,
-    "average_rag_latency_ms": 767.8776214306708,
-    "median_rag_latency_ms": 167.64529998181388,
+    "average_rag_latency_ms": 981.6058214304836,
+    "median_rag_latency_ms": 760.3627999778837,
     "question_results": [
         {
             "question": "How many days of annual leave do full-time employees receive?",
             "expected_answer": "25 days",
-            "generated_answer": "According to the Employee Handbook [Source 1], full-time employees are entitled to 25 days of paid annual leave per calendar year.",
+            "generated_answer": "Full‑time employees receive **25 days** of paid annual leave per calendar year. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "employee_handbook.pdf",
@@ -18,12 +18,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "How many days of annual leave do full-time employees receive?",
-            "latency_ms": 507.99
+            "latency_ms": 700.07
         },
         {
             "question": "How many unused annual leave days can employees carry forward?",
             "expected_answer": "5 days",
-            "generated_answer": "According to the Annual Leave section in the Employee Handbook [Source 1], employees may carry forward a maximum of 5 unused annual leave days into the following calendar year.",
+            "generated_answer": "Employees may carry forward a maximum of **5 unused annual leave days** into the following calendar year. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "employee_handbook.pdf",
@@ -33,12 +33,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "How many unused annual leave days can employees carry forward?",
-            "latency_ms": 171.01
+            "latency_ms": 795.84
         },
         {
             "question": "How long is the probation period for new permanent employees?",
             "expected_answer": "6 months",
-            "generated_answer": "According to [Source 1], the probation period for new permanent employees is 6 months.",
+            "generated_answer": "The probation period for new permanent employees is **6 months**【Source 1】.",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "employee_handbook.pdf",
@@ -48,12 +48,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "How long is the probation period for new permanent employees?",
-            "latency_ms": 144.78
+            "latency_ms": 729.59
         },
         {
             "question": "What is the annual professional development allowance?",
             "expected_answer": "£750",
-            "generated_answer": "The annual professional development allowance is £750. [Source 1]",
+            "generated_answer": "The annual professional development allowance is **£750** for permanent employees. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "employee_handbook.pdf",
@@ -64,12 +64,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "What is the annual professional development allowance?",
-            "latency_ms": 191.19
+            "latency_ms": 905.68
         },
         {
             "question": "How many days per week can eligible employees work remotely?",
             "expected_answer": "3 days per week",
-            "generated_answer": "Eligible employees may work remotely for up to 3 days per week.",
+            "generated_answer": "Eligible employees may work remotely for up to **3 days per week**. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "remote_work_policy.docx",
@@ -79,7 +79,7 @@
             ],
             "source_correct": true,
             "retrieval_query": "How many days per week can eligible employees work remotely?",
-            "latency_ms": 124.0
+            "latency_ms": 606.82
         },
         {
             "question": "What must employees use when accessing internal systems outside the office?",
@@ -94,12 +94,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "What must employees use when accessing internal systems outside the office?",
-            "latency_ms": 155.42
+            "latency_ms": 1127.41
         },
         {
             "question": "When do employees become eligible for regular remote working?",
             "expected_answer": "After successfully completing probation",
-            "generated_answer": "Employees become eligible for regular remote working after successfully completing their probation period.",
+            "generated_answer": "Employees become eligible for regular remote working after successfully completing their probation period. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "remote_work_policy.docx",
@@ -109,12 +109,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "When do employees become eligible for regular remote working?",
-            "latency_ms": 151.07
+            "latency_ms": 617.53
         },
         {
             "question": "Within how many days must business expenses be submitted?",
             "expected_answer": "30 days",
-            "generated_answer": "According to the EXPENSE CLAIMS section in [Source 1 | company_faq.txt], business expense claims must be submitted within 30 days of the date the expense was incurred.",
+            "generated_answer": "Business expense claims must be submitted within **30 days** of the date the expense was incurred. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "company_faq.txt",
@@ -124,12 +124,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "Within how many days must business expenses be submitted?",
-            "latency_ms": 182.21
+            "latency_ms": 791.13
         },
         {
             "question": "How many employee parking spaces does the Manchester office have?",
             "expected_answer": "40 parking spaces",
-            "generated_answer": "The Manchester office has 40 employee parking spaces. [Source 1]",
+            "generated_answer": "The Manchester office has **40 employee parking spaces**【Source 1】.",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "company_faq.txt",
@@ -141,12 +141,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "How many employee parking spaces does the Manchester office have?",
-            "latency_ms": 171.47
+            "latency_ms": 882.1
         },
         {
             "question": "What referral bonus is paid after a referred candidate completes probation?",
             "expected_answer": "£500",
-            "generated_answer": "£500. \n\n[Source 1 | company_faq.txt]",
+            "generated_answer": "Employees receive a £500 referral bonus when a referred candidate successfully completes their probation period. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "company_faq.txt",
@@ -157,12 +157,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "What referral bonus is paid after a referred candidate completes probation?",
-            "latency_ms": 164.28
+            "latency_ms": 1181.41
         },
         {
             "question": "Which laptop has a three-year warranty?",
             "expected_answer": "NexaBook Pro",
-            "generated_answer": "The NexaBook Pro has a three-year warranty.",
+            "generated_answer": "The laptop with a three‑year warranty is the **NexaBook Pro**【Source 1】.",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "product_catalog.xlsx",
@@ -174,12 +174,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "Which laptop has a three-year warranty?",
-            "latency_ms": 143.33
+            "latency_ms": 593.55
         },
         {
             "question": "How much does the NexaBook Pro cost?",
             "expected_answer": "£1299",
-            "generated_answer": "The NexaBook Pro costs £1299. [Source 1]",
+            "generated_answer": "The NexaBook Pro costs £1,299. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "product_catalog.xlsx",
@@ -191,12 +191,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "How much does the NexaBook Pro cost?",
-            "latency_ms": 157.0
+            "latency_ms": 3486.84
         },
         {
             "question": "Which product has a four-year warranty?",
             "expected_answer": "NexaView Ultra",
-            "generated_answer": "The NexaView Ultra product has a 4-year warranty. [Source 1]",
+            "generated_answer": "The product with a four‑year warranty is **NexaView Ultra**【Source 1】.",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "product_catalog.xlsx",
@@ -208,12 +208,12 @@
             ],
             "source_correct": true,
             "retrieval_query": "Which product has a four-year warranty?",
-            "latency_ms": 4247.63
+            "latency_ms": 710.38
         },
         {
             "question": "Which service centre offers drop-off-only support?",
             "expected_answer": "Birmingham",
-            "generated_answer": "The service centre in Birmingham offers drop-off only support. \n\n[Source 1 | product_catalog.xlsx, sheet Service Centres, row 4]",
+            "generated_answer": "The service centre that offers drop‑off‑only support is the one in Birmingham. [Source 1]",
             "answer_correct": true,
             "reference_coverage": 1.0,
             "expected_source": "product_catalog.xlsx",
@@ -225,7 +225,7 @@
             ],
             "source_correct": true,
             "retrieval_query": "Which service centre offers drop-off-only support?",
-            "latency_ms": 4238.91
+            "latency_ms": 614.12
         }
     ]
 }

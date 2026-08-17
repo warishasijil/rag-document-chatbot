@@ -4,11 +4,12 @@
     "hit_rate_at_3": 1.0,
     "hit_rate_at_5": 1.0,
     "mean_reciprocal_rank": 1.0,
-    "average_retrieval_latency_ms": 20.10895000005673,
+    "average_retrieval_latency_ms": 32.68375000750114,
     "question_results": [
         {
             "question": "How many days of annual leave do full-time employees receive?",
             "expected_source": "employee_handbook.pdf",
+            "rank": 1,
             "retrieved_sources": [
                 "employee_handbook.pdf",
                 "employee_handbook.pdf",
@@ -16,12 +17,12 @@
                 "remote_work_policy.docx",
                 "company_faq.txt"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 111.11
+            "latency_ms": 230.62
         },
         {
             "question": "How many unused annual leave days can employees carry forward?",
             "expected_source": "employee_handbook.pdf",
+            "rank": 1,
             "retrieved_sources": [
                 "employee_handbook.pdf",
                 "employee_handbook.pdf",
@@ -29,12 +30,12 @@
                 "company_faq.txt",
                 "remote_work_policy.docx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 13.58
+            "latency_ms": 15.44
         },
         {
             "question": "How long is the probation period for new permanent employees?",
             "expected_source": "employee_handbook.pdf",
+            "rank": 1,
             "retrieved_sources": [
                 "employee_handbook.pdf",
                 "employee_handbook.pdf",
@@ -42,12 +43,12 @@
                 "company_faq.txt",
                 "remote_work_policy.docx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 14.2
+            "latency_ms": 16.04
         },
         {
             "question": "What is the annual professional development allowance?",
             "expected_source": "employee_handbook.pdf",
+            "rank": 1,
             "retrieved_sources": [
                 "employee_handbook.pdf",
                 "employee_handbook.pdf",
@@ -55,12 +56,12 @@
                 "remote_work_policy.docx",
                 "product_catalog.xlsx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 14.04
+            "latency_ms": 12.86
         },
         {
             "question": "How many days per week can eligible employees work remotely?",
             "expected_source": "remote_work_policy.docx",
+            "rank": 1,
             "retrieved_sources": [
                 "remote_work_policy.docx",
                 "remote_work_policy.docx",
@@ -68,12 +69,12 @@
                 "employee_handbook.pdf",
                 "remote_work_policy.docx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 13.39
+            "latency_ms": 15.7
         },
         {
             "question": "What must employees use when accessing internal systems outside the office?",
             "expected_source": "remote_work_policy.docx",
+            "rank": 1,
             "retrieved_sources": [
                 "remote_work_policy.docx",
                 "remote_work_policy.docx",
@@ -81,12 +82,12 @@
                 "remote_work_policy.docx",
                 "remote_work_policy.docx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 14.36
+            "latency_ms": 17.71
         },
         {
             "question": "When do employees become eligible for regular remote working?",
             "expected_source": "remote_work_policy.docx",
+            "rank": 1,
             "retrieved_sources": [
                 "remote_work_policy.docx",
                 "remote_work_policy.docx",
@@ -94,12 +95,12 @@
                 "remote_work_policy.docx",
                 "remote_work_policy.docx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 8.0
+            "latency_ms": 13.68
         },
         {
             "question": "Within how many days must business expenses be submitted?",
             "expected_source": "company_faq.txt",
+            "rank": 1,
             "retrieved_sources": [
                 "company_faq.txt",
                 "employee_handbook.pdf",
@@ -107,12 +108,12 @@
                 "company_faq.txt",
                 "employee_handbook.pdf"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 12.97
+            "latency_ms": 16.93
         },
         {
             "question": "How many employee parking spaces does the Manchester office have?",
             "expected_source": "company_faq.txt",
+            "rank": 1,
             "retrieved_sources": [
                 "company_faq.txt",
                 "product_catalog.xlsx",
@@ -120,12 +121,12 @@
                 "product_catalog.xlsx",
                 "employee_handbook.pdf"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 13.82
+            "latency_ms": 17.33
         },
         {
             "question": "What referral bonus is paid after a referred candidate completes probation?",
             "expected_source": "company_faq.txt",
+            "rank": 1,
             "retrieved_sources": [
                 "company_faq.txt",
                 "employee_handbook.pdf",
@@ -133,12 +134,12 @@
                 "remote_work_policy.docx",
                 "employee_handbook.pdf"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 14.15
+            "latency_ms": 20.74
         },
         {
             "question": "Which laptop has a three-year warranty?",
             "expected_source": "product_catalog.xlsx",
+            "rank": 1,
             "retrieved_sources": [
                 "product_catalog.xlsx",
                 "product_catalog.xlsx",
@@ -146,12 +147,12 @@
                 "product_catalog.xlsx",
                 "product_catalog.xlsx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 14.0
+            "latency_ms": 17.36
         },
         {
             "question": "How much does the NexaBook Pro cost?",
             "expected_source": "product_catalog.xlsx",
+            "rank": 1,
             "retrieved_sources": [
                 "product_catalog.xlsx",
                 "product_catalog.xlsx",
@@ -159,12 +160,12 @@
                 "product_catalog.xlsx",
                 "product_catalog.xlsx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 14.32
+            "latency_ms": 20.59
         },
         {
             "question": "Which product has a four-year warranty?",
             "expected_source": "product_catalog.xlsx",
+            "rank": 1,
             "retrieved_sources": [
                 "product_catalog.xlsx",
                 "product_catalog.xlsx",
@@ -172,12 +173,12 @@
                 "product_catalog.xlsx",
                 "product_catalog.xlsx"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 12.93
+            "latency_ms": 20.55
         },
         {
             "question": "Which service centre offers drop-off-only support?",
             "expected_source": "product_catalog.xlsx",
+            "rank": 1,
             "retrieved_sources": [
                 "product_catalog.xlsx",
                 "product_catalog.xlsx",
@@ -185,8 +186,7 @@
                 "remote_work_policy.docx",
                 "company_faq.txt"
             ],
-            "expected_source_rank": 1,
-            "latency_ms": 10.65
+            "latency_ms": 22.01
         }
     ]
 }

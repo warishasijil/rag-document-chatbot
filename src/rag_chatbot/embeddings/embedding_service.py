@@ -5,20 +5,14 @@ from rag_chatbot.config import Settings
 
 
 class EmbeddingService:
-    """Provides the embedding model used by the RAG system."""
+    """Load the embedding model used for indexing and retrieval."""
 
-    def __init__(
-        self,
-        model_name: str = Settings.EMBEDDING_MODEL_NAME,
-    ) -> None:
+    def __init__(self, model_name: str = Settings.EMBEDDING_MODEL_NAME):
         self._embeddings = HuggingFaceEmbeddings(
             model_name=model_name,
-            encode_kwargs={
-                "normalize_embeddings": True,
-            },
+            encode_kwargs={"normalize_embeddings": True},
         )
 
     @property
     def embeddings(self) -> Embeddings:
-        """Return the configured LangChain embedding model."""
         return self._embeddings

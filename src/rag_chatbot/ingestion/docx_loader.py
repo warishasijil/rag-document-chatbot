@@ -7,7 +7,7 @@ from rag_chatbot.ingestion.base_loader import BaseDocumentLoader
 
 
 class DOCXDocumentLoader(BaseDocumentLoader):
-    """Loader for Microsoft Word (.docx) files."""
+    """Load text from Word documents."""
 
     def load(self, file_path: Path) -> list[Document]:
         word_document = WordDocument(file_path)
@@ -18,18 +18,16 @@ class DOCXDocumentLoader(BaseDocumentLoader):
             if paragraph.text.strip()
         ]
 
-        text = "\n\n".join(paragraphs)
-
-        if not text:
+        if not paragraphs:
             return []
 
-        document = Document(
-            page_content=text,
-            metadata={
-                "source": str(file_path),
-                "file_name": file_path.name,
-                "file_type": file_path.suffix.lower(),
-            },
-        )
-
-        return [document]
+        return [
+            Document(
+                page_content="\n\n".join(paragraphs),
+                metadata={
+                    "source": str(file_path),
+                    "file_name": file_path.name,
+                    "file_type": file_path.suffix.lower(),
+                },
+            )
+        ]
